@@ -2,17 +2,15 @@
 
 import { forwardRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
+import type { Editor as TinyMCEEditorType } from "tinymce"; // ← これ
 
-// 親コンポーネントは TipTap版と同様に value/onChange を渡す想定
 export type EditComponentProps = {
   value?: string;
   onChange?: (value: string) => void;
-  // 他にも呼び出し側が渡す可能性のある props を許容
   [key: string]: any;
 };
 
-// forwardRef の型を明示
-const EditComponent = forwardRef<HTMLDivElement, EditComponentProps>(
+const EditComponent = forwardRef<TinyMCEEditorType, EditComponentProps>(
   ({ value, onChange, ...props }, ref) => {
     return (
       <Editor
@@ -32,7 +30,8 @@ const EditComponent = forwardRef<HTMLDivElement, EditComponentProps>(
             "insertdatetime media table paste code help wordcount"
           ],
           toolbar:
-            "undo redo | formatselect | bold italic underline backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help"
+            "undo redo | formatselect | bold italic underline backcolor | " +
+            "alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help"
         }}
         {...props}
       />
