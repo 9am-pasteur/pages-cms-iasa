@@ -45,7 +45,7 @@
     "@react-email/components": "^0.0.22",
     "@tanstack/match-sorter-utils": "^8.15.1",
     "@tanstack/react-table": "^8.17.3",
-    "@tinymce/tinymce-react": "^4.4.0",
+    "@tinymce/tinymce-react": "^4.3.3",
     "@uiw/codemirror-theme-github": "^4.22.1",
     "@uiw/react-codemirror": "^4.22.1",
     "arctic": "^1.8.0",
