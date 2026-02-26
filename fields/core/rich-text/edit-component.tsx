@@ -2,7 +2,6 @@
 
 import { forwardRef } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-import type { Editor as TinyMCEEditorType } from "tinymce"; // ← これ
 
 export type EditComponentProps = {
   value?: string;
@@ -10,31 +9,32 @@ export type EditComponentProps = {
   [key: string]: any;
 };
 
-const EditComponent = forwardRef<TinyMCEEditorType, EditComponentProps>(
+const EditComponent = forwardRef<HTMLDivElement, EditComponentProps>(
   ({ value, onChange, ...props }, ref) => {
     return (
-      <Editor
-        ref={ref}
-        value={value ?? ""}
-        onEditorChange={(content) => {
-          if (onChange) {
-            onChange(content);
-          }
-        }}
-        init={{
-          height: 380,
-          menubar: true,
-          plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table paste code help wordcount"
-          ],
-          toolbar:
-            "undo redo | formatselect | bold italic underline backcolor | " +
-            "alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help"
-        }}
-        {...props}
-      />
+      <div ref={ref}>
+        <Editor
+          value={value ?? ""}
+          onEditorChange={(content) => {
+            if (onChange) {
+              onChange(content);
+            }
+          }}
+          init={{
+            height: 380,
+            menubar: true,
+            plugins: [
+              "advlist autolink lists link image charmap print preview anchor",
+              "searchreplace visualblocks code fullscreen",
+              "insertdatetime media table paste code help wordcount"
+            ],
+            toolbar:
+              "undo redo | formatselect | bold italic underline backcolor | " +
+              "alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help"
+          }}
+          {...props}
+        />
+      </div>
     );
   }
 );
